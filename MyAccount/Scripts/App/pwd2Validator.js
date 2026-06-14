@@ -1,0 +1,1 @@
+﻿$.validator.unobtrusive.adapters.add
