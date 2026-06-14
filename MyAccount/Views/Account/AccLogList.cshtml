@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MyAccount.Models.Account_Log>
+@using PagedList
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "交易日志列表";
+}
+
+<h2>交易日志列表</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Limit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsCancel)
+        </th>
+        <th>
+            @Html.Label("操作")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Limit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsCancel)
+        </td>
+        <td>
+            @Html.ActionLink(item.IsCancel ? "恢复": "撤销", "LogCancel", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("AccLogList", new { page }))

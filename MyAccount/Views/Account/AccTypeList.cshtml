@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MyAccount.Models.Account_Type>
+@using PagedList
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "业务类型列表";
+}
+
+<h2>业务类型列表</h2>
+
+<p>
+    @Html.ActionLink("新建业务类型", "AccTypeCreate")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "AccTypeEdit", new { id=item.Id }) |
+            @Html.ActionLink("详情", "AccTypeDetails", new { id=item.Id }) |
+            @Html.ActionLink("删除", "AccTypeDelete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("AccTypeList", new { page }))

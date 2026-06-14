@@ -1,0 +1,75 @@
+﻿@model IEnumerable<MyAccount.Models.Owner>
+@using MyAccount.Utils.Enums;
+@using PagedList
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "主人信息列表";
+}
+
+<h2>主人信息列表</h2>
+@using (Html.BeginForm("List", "Owners", FormMethod.Get))
+{
+    @Html.DropDownList("findBy", ViewBag.findByItems as List<SelectListItem>)
+    @Html.TextBox("keyword")
+    <input type="submit" value="搜索"/>
+}
+<p>
+    @Html.ActionLink("创建新的主人信息", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Level)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th>
+            @Html.Label("操作")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Level)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateTime)
+        </td>
+        <td>
+            @Html.ActionLink("查看", "Details", new { id = item.Id }, new { target = "_blank" }) |
+            @Html.ActionLink("修改", "Edit", new { id = item.Id }, new { target = "_blank" }) |
+            @Html.ActionLink(item.State == OwnerState.正常 ? "禁用" : "启用", "StateChange", new { id = item.Id }) |
+            @Html.ActionLink("删除", "Delete", new { id = item.Id }, new { target = "_blank" })
+        </td>
+    </tr>
+}
+
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("List", new { page, findBy=ViewBag.findBy,keyword=ViewBag.keyword}))

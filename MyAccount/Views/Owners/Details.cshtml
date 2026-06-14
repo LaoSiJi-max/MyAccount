@@ -1,0 +1,69 @@
+﻿@model MyAccount.Models.Owner
+@using MyAccount.Utils.Enums;
+
+@{
+    ViewBag.Title = "主人信息详情";
+}
+
+<h2>主人信息详情</h2>
+
+<div>
+    <h4>主人信息</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+
+        <dd>
+            @ViewBag.lb_state
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Level)
+        </dt>
+
+        <dd>
+            @ViewBag.lb_level
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("修改", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("删除", "Delete", new { id = Model.Id }) |
+    @Html.ActionLink(Model.State == OwnerState.正常 ? "禁用" : "启用", "StateChange", new { id = Model.Id }) |
+    @Html.ActionLink("返回列表", "List")
+</p>

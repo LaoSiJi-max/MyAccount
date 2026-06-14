@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "主页";
+}
+
+<h2>主人管理</h2>
+<ul>
+    <li>@ViewBag.userName</li>
+    <li>@Html.ActionLink("主人登录", "Login", "Owners")</li>
+    <li>@Html.ActionLink("主人信息管理", "List", "Owners")</li>
+    <li>@Html.ActionLink("主人退出登录", "Logout", "Owners")</li>
+</ul>
+
+<h2>客户管理</h2>
+<ul>
+    <li>@Html.ActionLink("客户信息管理", "Index", "Customers")</li>
+    <li>@Html.ActionLink("新建客户信息", "Create", "Customers")</li>
+</ul>
+
+<h2>账目管理</h2>
+<ul>
+    <li>@Html.ActionLink("客户账目信息", "Index", "Account")</li>
+    <li><h3>业务管理</h3></li>
+    <li>@Html.ActionLink("业务类型管理", "AccTypeList", "Account")</li>
+</ul>

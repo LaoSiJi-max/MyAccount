@@ -1,0 +1,14 @@
+﻿@model IEnumerable<MyAccount.Models.Owner>
+
+@{
+    ViewBag.Title = "主人信息列表";
+}
+
+<p>@ViewBag.userName</p>
+<h2>主人管理</h2>
+<ul>
+    <li>@Html.ActionLink("主人登录", "Login", "Owners")</li>
+    <li>@Html.ActionLink("主人信息管理", "List", "Owners")</li>
+    <li>@Html.ActionLink("新建主人信息", "Create", "Owners")</li>
+    <li>@Html.ActionLink("主人退出登录", "Logout", "Owners")</li>
+</ul>

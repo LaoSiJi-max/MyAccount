@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "主人登陆";
+}
+
+<h2>主人登录</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <p>@Html.Label("登录名:")@Html.TextBox("name")</p>
+    <p>@Html.Label("密码:")@Html.Password("pwd")</p>
+    <p><input type="submit" value="登录" class="btn btn-default" /></p>
+    <p>@ViewBag.stateInfo</p>
+}
+
