@@ -256,7 +256,7 @@ SQL Server LocalDB
 
 ```text
 MyAccount
-├── screenshots
+├── Screenshots
 │   ├── customer-balance-list.png
 │   ├── add-account-entry.png
 │   └── transaction-log-list.png
